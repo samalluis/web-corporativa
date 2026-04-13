@@ -7,12 +7,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --cream:   #F5F0E8;
-      --dark:    #1A1A14;
-      --olive:   #4A5240;
-      --orange:  #E8722A;
-      --warm:    #C9B99A;
-      --light:   #FAF7F2;
+      --cream:    #F5F0E8;
+      --dark:     #1A1A14;
+      --olive:    #4A5240;
+      --orange:   #E8722A;
+      --warm:     #C9B99A;
+      --light:    #FAF7F2;
     }
  
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -356,6 +356,33 @@
     .contact-form select:focus,
     .contact-form textarea:focus { border-color: var(--orange); }
     .contact-form textarea { resize: vertical; min-height: 130px; }
+
+    /* ESTILOS NUEVOS PARA EL CHECKBOX */
+    .checkbox-group {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+      margin: 0.2rem 0;
+    }
+    .checkbox-group input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--orange);
+      cursor: pointer;
+      margin-top: 4px;
+      flex-shrink: 0;
+    }
+    .checkbox-group label {
+      font-size: 0.85rem;
+      color: #666;
+      line-height: 1.5;
+      cursor: pointer;
+    }
+    .checkbox-group label a {
+      color: var(--orange);
+      text-decoration: underline;
+    }
+
     .contact-form button {
       background: var(--orange); color: #fff;
       padding: 1rem; border: none; border-radius: 2px;
@@ -436,7 +463,6 @@
 </head>
 <body>
  
-<!-- ── NAV ────────────────────────────────────── -->
 <nav>
   <div class="logo">Food<span>Logístic</span> SA</div>
   <ul class="nav-links">
@@ -448,7 +474,6 @@
   </ul>
 </nav>
  
-<!-- ── HERO ───────────────────────────────────── -->
 <section class="hero">
   <div class="hero-left">
     <span class="hero-tag">Distribución Alimentaria Profesional</span>
@@ -471,7 +496,6 @@
   </div>
 </section>
  
-<!-- ── STATS ──────────────────────────────────── -->
 <div class="stats-bar">
   <div class="stat-item reveal"><div class="num">20+</div><p>Años de experiencia</p></div>
   <div class="stat-item reveal"><div class="num">48 h</div><p>Entrega máxima garantizada</p></div>
@@ -479,7 +503,6 @@
   <div class="stat-item reveal"><div class="num">99%</div><p>Tasa de satisfacción</p></div>
 </div>
  
-<!-- ── ABOUT ──────────────────────────────────── -->
 <section class="about" id="about">
   <div class="about-img reveal">
     <img src="https://images.unsplash.com/photo-1553340308-5b3f02cded30?w=700&q=80" alt="Almacén FoodLogístic" loading="lazy"/>
@@ -498,7 +521,6 @@
   </div>
 </section>
  
-<!-- ── SERVICES ───────────────────────────────── -->
 <section class="services" id="services">
   <div class="section-header reveal">
     <span class="section-tag">Qué ofrecemos</span>
@@ -544,7 +566,6 @@
   </div>
 </section>
  
-<!-- ── PRODUCTS ───────────────────────────────── -->
 <section class="products" id="products">
   <div class="section-header reveal">
     <span class="section-tag">Catálogo</span>
@@ -594,7 +615,6 @@
   </div>
 </section>
  
-<!-- ── WHY ────────────────────────────────────── -->
 <section class="why">
   <div class="reveal">
     <span class="section-tag" style="color:var(--warm)">Por qué elegirnos</span>
@@ -633,7 +653,6 @@
   </div>
 </section>
  
-<!-- ── TESTIMONIALS ───────────────────────────── -->
 <section class="testimonials">
   <div class="section-header reveal">
     <span class="section-tag">Testimonios</span>
@@ -667,7 +686,6 @@
   </div>
 </section>
  
-<!-- ── CONTACT ────────────────────────────────── -->
 <section class="contact" id="contact">
   <div class="reveal">
     <span class="section-tag">Contacto</span>
@@ -692,6 +710,7 @@
       </div>
     </div>
   </div>
+
   <form class="contact-form reveal" onsubmit="handleSubmit(event)">
     <div class="form-row">
       <input type="text" placeholder="Nombre y apellidos" required/>
@@ -701,7 +720,7 @@
       <input type="email" placeholder="Email corporativo" required/>
       <input type="tel" placeholder="Teléfono"/>
     </div>
-    <select>
+    <select required>
       <option value="" disabled selected>Tipo de negocio</option>
       <option>Supermercado / Tienda</option>
       <option>Restaurante / Bar</option>
@@ -710,11 +729,16 @@
       <option>Otro</option>
     </select>
     <textarea placeholder="Cuéntanos qué necesitas…"></textarea>
+
+    <div class="checkbox-group">
+      <input type="checkbox" id="privacy" required>
+      <label for="privacy">Acepto el tratamiento de mi información personal de forma confidencial y la <a href="#">política de privacidad</a>.</label>
+    </div>
+
     <button type="submit">Enviar solicitud →</button>
   </form>
 </section>
  
-<!-- ── FOOTER ─────────────────────────────────── -->
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
@@ -764,18 +788,20 @@
   // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+    entries.forEach(e => { 
+      if (e.isIntersecting) { 
+        e.target.classList.add('visible'); 
+        io.unobserve(e.target); 
+      } 
+    });
   }, { threshold: 0.12 });
   reveals.forEach(el => io.observe(el));
  
   // Form submit
   function handleSubmit(e) {
     e.preventDefault();
-    const btn = e.target.querySelector('button');
-    btn.textContent = '✓ ¡Solicitud enviada!';
-    btn.style.background = 'var(--olive)';
-    btn.disabled = true;
-    setTimeout(() => { btn.textContent = 'Enviar solicitud →'; btn.style.background = ''; btn.disabled = false; e.target.reset(); }, 3000);
+    alert("Gracias por tu interés. Hemos recibido tu solicitud correctamente.");
+    e.target.reset();
   }
 </script>
   <!-- Default Statcounter code for web corporativa foodlogistic
