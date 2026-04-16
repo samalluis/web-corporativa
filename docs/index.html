@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FoodLogistic S.A. | Solucions Logístiques Alimentàries</title>
     <style>
-        /* CSS Integrat per a disseny corporatiu */
         :root {
             --primary-color: #2c3e50;
             --accent-color: #27ae60;
+            --accent-hover: #219150;
             --light-bg: #f4f7f6;
             --text-dark: #333;
             --white: #ffffff;
+            --border: #ddd;
         }
 
         body {
@@ -22,7 +23,6 @@
             background-color: var(--light-bg);
         }
 
-        /* Header i Navegació */
         header {
             background-color: var(--white);
             padding: 1rem 5%;
@@ -35,12 +35,7 @@
             z-index: 1000;
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--primary-color);
-        }
-
+        .logo { font-size: 1.5rem; font-weight: bold; color: var(--primary-color); }
         .logo span { color: var(--accent-color); }
 
         nav a {
@@ -50,14 +45,13 @@
             font-weight: 500;
         }
 
-        /* Hero Section */
         .hero {
             background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8)), 
                         url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=2000');
             background-size: cover;
             background-position: center;
             color: white;
-            height: 60vh;
+            height: 50vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -66,9 +60,6 @@
             padding: 0 20px;
         }
 
-        .hero h1 { font-size: 3rem; margin-bottom: 10px; }
-
-        /* Contingut Principal */
         .container {
             max-width: 1100px;
             margin: 40px auto;
@@ -79,6 +70,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
+            margin-bottom: 60px;
         }
 
         .card {
@@ -86,38 +78,80 @@
             padding: 30px;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
         }
 
-        .card:hover { transform: translateY(-5px); }
+        /* --- SECCIÓ FORMULARI --- */
+        .contact-section {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-top: 40px;
+        }
 
-        /* Secció Legal (Obligatori LSSI/LOPD) */
+        .contact-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            border-bottom: 3px solid var(--accent-color);
+            display: inline-block;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            box-sizing: border-box; /* Evita que el padding deformi l'ample */
+            font-family: inherit;
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .btn-submit {
+            background: var(--accent-color);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .btn-submit:hover {
+            background: var(--accent-hover);
+        }
+
+        /* --- ELEMENTS FINALS --- */
         .legal-section {
-            background: #eee;
+            background: #e9ecef;
             padding: 20px;
             font-size: 0.85rem;
             margin-top: 40px;
             border-radius: 5px;
+            color: #666;
         }
 
-        /* Footer */
         footer {
             background: var(--primary-color);
             color: white;
             text-align: center;
             padding: 20px 0;
             margin-top: 50px;
-        }
-
-        /* Estils per al botó de registre (si cal enllaçar-lo) */
-        .btn {
-            background: var(--accent-color);
-            color: white;
-            padding: 10px 25px;
-            border-radius: 5px;
-            text-decoration: none;
-            display: inline-block;
-            margin-top: 15px;
         }
     </style>
 </head>
@@ -128,15 +162,13 @@
         <nav>
             <a href="#inici">Inici</a>
             <a href="#serveis">Serveis</a>
-            <a href="#nosaltres">Nosaltres</a>
             <a href="#contacte">Contacte</a>
         </nav>
     </header>
 
     <section class="hero" id="inici">
-        <h1>Connectant la teva producció amb el món</h1>
-        <p>Logística intel·ligent per al sector alimentari.</p>
-        <a href="#serveis" class="btn">Saber-ne més</a>
+        <h1>Excel·lència en Logística Alimentària</h1>
+        <p>Solucions a mida per a la seva cadena de subministrament.</p>
     </section>
 
     <div class="container">
@@ -145,32 +177,57 @@
             <div class="services">
                 <div class="card">
                     <h3>Transport Refrigerat</h3>
-                    <p>Mantenim la cadena de fred intacta des de l'origen fins a la destinació final, garantint la frescor.</p>
+                    <p>Flota d'última generació amb control de temperatura constant.</p>
                 </div>
                 <div class="card">
-                    <h3>Emmagatzematge Intel·ligent</h3>
-                    <p>Sistemes automatitzats de gestió d'estocs per minimitzar les pèrdues i optimitzar temps.</p>
+                    <h3>Gestió Duanera</h3>
+                    <p>Especialistes en tràmits internacionals per a productes frescos.</p>
                 </div>
                 <div class="card">
-                    <h3>Distribució Capil·lar</h3>
-                    <p>Arribem a qualsevol punt de venda amb la màxima eficiència logística i sostenibilitat.</p>
+                    <h3>Última Milla</h3>
+                    <p>Entrega ràpida en centres urbans garantint la qualitat del producte.</p>
                 </div>
             </div>
         </section>
 
-        <section id="nosaltres" style="margin-top: 60px;">
-            <h2>Sobre FoodLogistic S.A.</h2>
-            <p>Amb més de 20 anys d'experiència, FoodLogistic s'ha consolidat com el partner estratègic per a empreses del sector d'alimentació i begudes. El nostre compromís és la seguretat alimentària i l'excel·lència en el servei.</p>
+        <section id="contacte" class="contact-section">
+            <h2>Contacti amb nosaltres</h2>
+            <p>Demani pressupost sense compromís o consulti els nostres serveis.</p>
+            
+            <form action="#">
+                <div class="form-group">
+                    <label for="nom">Nom Complet</label>
+                    <input type="text" id="nom" name="nom" placeholder="Ex: Joan Garcia" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Correu Electrònic</label>
+                    <input type="email" id="email" name="email" placeholder="correu@empresa.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="assumpte">Assumpte</label>
+                    <input type="text" id="assumpte" name="assumpte" placeholder="Com l'podem ajudar?">
+                </div>
+
+                <div class="form-group">
+                    <label for="missatge">Missatge</label>
+                    <textarea id="missatge" name="missatge" placeholder="Escrigui aquí la seva consulta..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">Enviar Sol·licitud</button>
+            </form>
         </section>
 
         <section class="legal-section">
-            <h4>Informació Legal</h4>
-            <p>D'acord amb la Llei 34/2002 (LSSI-CE) i el RGPD/LOPDGDD, FoodLogistic S.A. informa que utilitza galetes tècniques i sistemes d'anàlisi de visites. Pots exercir els teus drets d'accés, rectificació i supressió contactant amb el nostre DPD.</p>
+            <h4>Avís Legal i Privacitat</h4>
+            <p>FoodLogistic S.A. és la responsable del tractament de les seves dades per gestionar la seva consulta. No se cediran dades a tercers excepte obligació legal. Pot consultar la nostra política de privacitat completa a la nostra seu central.</p>
         </section>
     </div>
 
     <footer>
-        <p>&copy; 2026 FoodLogistic S.A. - Tots els drets reservats.</p>    
+        <p>&copy; 2026 FoodLogistic S.A. - Solucions Profesionals</p>
+        
 </script>
   <!-- Default Statcounter code for web corporativa foodlogistic
 https://github.com/samalluis/web-corporativa/blob/main/docs/index.html -->
