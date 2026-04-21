@@ -7,6 +7,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet"/>
   <style>
 
+
+.checkbox-group { display: flex; align-items: flex-start; gap: 10px; margin-top: 10px; }
+.checkbox-group input { width: 18px !important; height: 18px !important; accent-color: var(--orange); margin-top: 3px; }
+.checkbox-group label { font-size: 0.85rem; color: #666; }
+
 /* Estils per al Banner de Cookies */
 .cookie-overlay {
     position: fixed;
@@ -790,6 +795,17 @@
     </select>
     <textarea placeholder="Cuéntanos qué necesitas…"></textarea>
     <button type="submit">Enviar solicitud →</button>
+
+    <div class="checkbox-group">
+    <input type="checkbox" id="privacidad" required>
+    <label for="privacidad">He llegit i accepto la <a href="privacidad.html">política de privacitat</a>.</label>
+</div>
+
+<div class="checkbox-group">
+    <input type="checkbox" id="comercial">
+    <label for="comercial">Autoritzo l'enviament de comunicacions comercials segons l' <a href="aviso-legal.html">avís legal</a>.</label>
+</div>
+
   </form>
 </section>
  
@@ -827,5 +843,30 @@
     setTimeout(() => { btn.textContent = 'Enviar solicitud →'; btn.style.background = ''; btn.disabled = false; e.target.reset(); }, 3000);
   }
 </script>
+
+<div id="cookie-banner" style="position: fixed; bottom: 20px; left: 20px; right: 20px; background: var(--dark); color: white; padding: 1.5rem; z-index: 10000; border-radius: 4px; display: none; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px;">
+        <p style="font-size: 0.85rem; margin: 0;">Utilitzem cookies pròpies i de tercers per millorar els nostres serveis. Pots acceptar-les, rebutjar-les o consultar la nostra <a href="cookies.html" style="color: var(--orange); text-decoration: underline;">política de cookies</a>.</p>
+        <div style="display: flex; gap: 10px;">
+            <button onclick="handleCookies('accept')" style="background: var(--orange); color: white; border: none; padding: 8px 20px; cursor: pointer; font-weight: 600;">Acceptar totes</button>
+            <button onclick="handleCookies('reject')" style="background: #444; color: white; border: none; padding: 8px 20px; cursor: pointer; font-weight: 600;">Rebutjar</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Lògica operativa del Banner
+    window.addEventListener('load', function() {
+        if (!localStorage.getItem('cookies-decided')) {
+            document.getElementById('cookie-banner').style.display = 'block';
+        }
+    });
+
+    function handleCookies(choice) {
+        localStorage.setItem('cookies-decided', choice);
+        document.getElementById('cookie-banner').style.display = 'none';
+    }
+</script>
+
 </body>
 </html>
