@@ -6,13 +6,72 @@
   <title>FoodLogístic SA – Distribución Alimentaria</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet"/>
   <style>
+
+/* Estils per al Banner de Cookies */
+.cookie-overlay {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    background: var(--dark);
+    color: white;
+    padding: 2rem;
+    z-index: 9999;
+    border-radius: 4px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    display: none; /* S'activarà amb JS */
+    animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.cookie-content h3 {
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 1rem;
+    color: var(--orange);
+}
+
+.cookie-content p {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+}
+
+.cookie-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.cookie-buttons button, .btn-info {
+    padding: 0.7rem 1.5rem;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.btn-accept { background: var(--orange); color: white; }
+.btn-reject { background: #444; color: white; }
+.btn-info { background: transparent; border: 1px solid white !important; color: white; }
+
+.btn-accept:hover { background: white; color: var(--dark); }
+.btn-reject:hover { background: #666; }
+
+
     :root {
-      --cream:   #F5F0E8;
-      --dark:    #1A1A14;
-      --olive:   #4A5240;
-      --orange:  #E8722A;
-      --warm:    #C9B99A;
-      --light:   #FAF7F2;
+      --cream:    #F5F0E8;
+      --dark:     #1A1A14;
+      --olive:    #4A5240;
+      --orange:   #E8722A;
+      --warm:     #C9B99A;
+      --light:    #FAF7F2;
     }
  
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -356,6 +415,33 @@
     .contact-form select:focus,
     .contact-form textarea:focus { border-color: var(--orange); }
     .contact-form textarea { resize: vertical; min-height: 130px; }
+
+    /* ESTILOS NUEVOS PARA EL CHECKBOX */
+    .checkbox-group {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+      margin: 0.2rem 0;
+    }
+    .checkbox-group input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--orange);
+      cursor: pointer;
+      margin-top: 4px;
+      flex-shrink: 0;
+    }
+    .checkbox-group label {
+      font-size: 0.85rem;
+      color: #666;
+      line-height: 1.5;
+      cursor: pointer;
+    }
+    .checkbox-group label a {
+      color: var(--orange);
+      text-decoration: underline;
+    }
+
     .contact-form button {
       background: var(--orange); color: #fff;
       padding: 1rem; border: none; border-radius: 2px;
@@ -433,10 +519,10 @@
       .footer-grid { grid-template-columns: 1fr; }
     }
   </style>
+
 </head>
 <body>
  
-<!-- ── NAV ────────────────────────────────────── -->
 <nav>
   <div class="logo">Food<span>Logístic</span> SA</div>
   <ul class="nav-links">
@@ -448,7 +534,6 @@
   </ul>
 </nav>
  
-<!-- ── HERO ───────────────────────────────────── -->
 <section class="hero">
   <div class="hero-left">
     <span class="hero-tag">Distribución Alimentaria Profesional</span>
@@ -471,7 +556,6 @@
   </div>
 </section>
  
-<!-- ── STATS ──────────────────────────────────── -->
 <div class="stats-bar">
   <div class="stat-item reveal"><div class="num">20+</div><p>Años de experiencia</p></div>
   <div class="stat-item reveal"><div class="num">48 h</div><p>Entrega máxima garantizada</p></div>
@@ -479,7 +563,6 @@
   <div class="stat-item reveal"><div class="num">99%</div><p>Tasa de satisfacción</p></div>
 </div>
  
-<!-- ── ABOUT ──────────────────────────────────── -->
 <section class="about" id="about">
   <div class="about-img reveal">
     <img src="https://images.unsplash.com/photo-1553340308-5b3f02cded30?w=700&q=80" alt="Almacén FoodLogístic" loading="lazy"/>
@@ -498,7 +581,6 @@
   </div>
 </section>
  
-<!-- ── SERVICES ───────────────────────────────── -->
 <section class="services" id="services">
   <div class="section-header reveal">
     <span class="section-tag">Qué ofrecemos</span>
@@ -544,7 +626,6 @@
   </div>
 </section>
  
-<!-- ── PRODUCTS ───────────────────────────────── -->
 <section class="products" id="products">
   <div class="section-header reveal">
     <span class="section-tag">Catálogo</span>
@@ -594,7 +675,6 @@
   </div>
 </section>
  
-<!-- ── WHY ────────────────────────────────────── -->
 <section class="why">
   <div class="reveal">
     <span class="section-tag" style="color:var(--warm)">Por qué elegirnos</span>
@@ -633,7 +713,6 @@
   </div>
 </section>
  
-<!-- ── TESTIMONIALS ───────────────────────────── -->
 <section class="testimonials">
   <div class="section-header reveal">
     <span class="section-tag">Testimonios</span>
@@ -667,7 +746,6 @@
   </div>
 </section>
  
-<!-- ── CONTACT ────────────────────────────────── -->
 <section class="contact" id="contact">
   <div class="reveal">
     <span class="section-tag">Contacto</span>
@@ -692,6 +770,7 @@
       </div>
     </div>
   </div>
+
   <form class="contact-form reveal" onsubmit="handleSubmit(event)">
     <div class="form-row">
       <input type="text" placeholder="Nombre y apellidos" required/>
@@ -701,7 +780,7 @@
       <input type="email" placeholder="Email corporativo" required/>
       <input type="tel" placeholder="Teléfono"/>
     </div>
-    <select>
+    <select required>
       <option value="" disabled selected>Tipo de negocio</option>
       <option>Supermercado / Tienda</option>
       <option>Restaurante / Bar</option>
@@ -710,73 +789,87 @@
       <option>Otro</option>
     </select>
     <textarea placeholder="Cuéntanos qué necesitas…"></textarea>
+
+    <div class="checkbox-group">
+        <input type="checkbox" id="privacidad" required>
+        <label for="privacidad">He llegit i accepto la <a href="privacidad.html" target="_blank">política de privacitat</a>.</label>
+    </div>
+
+    <div class="checkbox-group">
+        <input type="checkbox" id="comercial">
+        <label for="comercial">Autoritzo l'enviament de comunicacions comercials segons l'<a href="aviso-legal.html" target="_blank">avís legal</a>.</label>
+    </div>
+
     <button type="submit">Enviar solicitud →</button>
   </form>
 </section>
  
-<!-- ── FOOTER ─────────────────────────────────── -->
 <footer>
-  <div class="footer-grid">
-    <div class="footer-brand">
-      <div class="logo">Food<span>Logístic</span> SA</div>
-      <p>Distribución alimentaria profesional para supermercados, restaurantes y empresas de catering en toda España desde 2003.</p>
-    </div>
-    <div class="footer-col">
-      <h4>Servicios</h4>
-      <ul>
-        <li><a href="#services">Distribución Capilar</a></li>
-        <li><a href="#services">Logística en Frío</a></li>
-        <li><a href="#services">Almacenaje Externalizado</a></li>
-        <li><a href="#services">Gestión de Pedidos</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Empresa</h4>
-      <ul>
-        <li><a href="#about">Quiénes somos</a></li>
-        <li><a href="#products">Catálogo</a></li>
-        <li><a href="#">Sostenibilidad</a></li>
-        <li><a href="#">Trabaja con nosotros</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Legal</h4>
-      <ul>
-        <li><a href="#">Aviso Legal</a></li>
-        <li><a href="#">Política de Privacidad</a></li>
-        <li><a href="#">Cookies</a></li>
-        <li><a href="#">Condiciones de servicio</a></li>
-      </ul>
-    </div>
-  </div>
   <div class="footer-bottom">
-    <p>© 2025 FoodLogístic SA — Todos los derechos reservados</p>
-    <div class="social-links">
-      <a href="#" title="LinkedIn">in</a>
-      <a href="#" title="Instagram">ig</a>
-      <a href="#" title="Facebook">fb</a>
-      <a href="#" title="Twitter / X">𝕏</a>
+    <div class="footer-legal">
+        <a href="aviso-legal.html">Aviso Legal</a>
+        <a href="privacidad.html">Política de Privacidad</a>
+        <a href="cookies.html">Política de Cookies</a>
     </div>
-  </div>
+    <p>&copy; 2026 FoodLogístic S.A. Todos los derechos reservados.</p>
+</div>
 </footer>
  
 <script>
   // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+    entries.forEach(e => { 
+      if (e.isIntersecting) { 
+        e.target.classList.add('visible'); 
+        io.unobserve(e.target); 
+      } 
+    });
   }, { threshold: 0.12 });
   reveals.forEach(el => io.observe(el));
  
   // Form submit
   function handleSubmit(e) {
     e.preventDefault();
-    const btn = e.target.querySelector('button');
-    btn.textContent = '✓ ¡Solicitud enviada!';
-    btn.style.background = 'var(--olive)';
-    btn.disabled = true;
-    setTimeout(() => { btn.textContent = 'Enviar solicitud →'; btn.style.background = ''; btn.disabled = false; e.target.reset(); }, 3000);
+    alert("Gracias por tu interés. Hemos recibido tu solicitud correctamente.");
+    e.target.reset();
   }
 </script>
+
+<div id="cookie-banner" class="cookie-overlay">
+    <div class="cookie-content">
+        <h3>Consentiment de Cookies 🍪</h3>
+        <p>Utilitzem cookies pròpies i de tercers per analitzar els nostres serveis i mostrar-te publicitat relacionada amb les teves preferències. Pots acceptar-les totes, rebutjar-les o configurar-les.</p>
+        <div class="cookie-buttons">
+            <button onclick="handleCookies('accept')" class="btn-accept">Acceptar totes</button>
+            <button onclick="handleCookies('reject')" class="btn-reject">Rebutjar</button>
+            <a href="cookies.html" class="btn-info">Més informació</a>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    // Comprovar si ja s'ha donat el consentiment
+    window.onload = function() {
+        if (!localStorage.getItem('cookies-accepted')) {
+            document.getElementById('cookie-banner').style.display = 'block';
+        }
+    }
+
+    // Funció per gestionar l'elecció
+    function handleCookies(choice) {
+        // Guardem la decisió al navegador
+        localStorage.setItem('cookies-accepted', choice);
+        // Tanquem el banner
+        document.getElementById('cookie-banner').style.display = 'none';
+        
+        if(choice === 'accept') {
+            console.log("Cookies acceptades: Executant scripts de seguiment...");
+            // Aquí aniria el codi de Google Analytics, etc.
+        }
+    }
+</script>
+
 </body>
 </html>
