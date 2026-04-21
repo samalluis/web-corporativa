@@ -789,17 +789,6 @@
       <option>Otro</option>
     </select>
     <textarea placeholder="Cuéntanos qué necesitas…"></textarea>
-
-    <div class="checkbox-group">
-        <input type="checkbox" id="privacidad" required>
-        <label for="privacidad">He llegit i accepto la <a href="privacidad.html" target="_blank">política de privacitat</a>.</label>
-    </div>
-
-    <div class="checkbox-group">
-        <input type="checkbox" id="comercial">
-        <label for="comercial">Autoritzo l'enviament de comunicacions comercials segons l'<a href="aviso-legal.html" target="_blank">avís legal</a>.</label>
-    </div>
-
     <button type="submit">Enviar solicitud →</button>
   </form>
 </section>
@@ -831,45 +820,12 @@
   // Form submit
   function handleSubmit(e) {
     e.preventDefault();
-    alert("Gracias por tu interés. Hemos recibido tu solicitud correctamente.");
-    e.target.reset();
+    const btn = e.target.querySelector('button');
+    btn.textContent = '✓ ¡Solicitud enviada!';
+    btn.style.background = 'var(--olive)';
+    btn.disabled = true;
+    setTimeout(() => { btn.textContent = 'Enviar solicitud →'; btn.style.background = ''; btn.disabled = false; e.target.reset(); }, 3000);
   }
 </script>
-
-<div id="cookie-banner" class="cookie-overlay">
-    <div class="cookie-content">
-        <h3>Consentiment de Cookies 🍪</h3>
-        <p>Utilitzem cookies pròpies i de tercers per analitzar els nostres serveis i mostrar-te publicitat relacionada amb les teves preferències. Pots acceptar-les totes, rebutjar-les o configurar-les.</p>
-        <div class="cookie-buttons">
-            <button onclick="handleCookies('accept')" class="btn-accept">Acceptar totes</button>
-            <button onclick="handleCookies('reject')" class="btn-reject">Rebutjar</button>
-            <a href="cookies.html" class="btn-info">Més informació</a>
-        </div>
-    </div>
-</div>
-
-
-<script>
-    // Comprovar si ja s'ha donat el consentiment
-    window.onload = function() {
-        if (!localStorage.getItem('cookies-accepted')) {
-            document.getElementById('cookie-banner').style.display = 'block';
-        }
-    }
-
-    // Funció per gestionar l'elecció
-    function handleCookies(choice) {
-        // Guardem la decisió al navegador
-        localStorage.setItem('cookies-accepted', choice);
-        // Tanquem el banner
-        document.getElementById('cookie-banner').style.display = 'none';
-        
-        if(choice === 'accept') {
-            console.log("Cookies acceptades: Executant scripts de seguiment...");
-            // Aquí aniria el codi de Google Analytics, etc.
-        }
-    }
-</script>
-
 </body>
 </html>

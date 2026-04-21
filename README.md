@@ -5,7 +5,7 @@ Aquesta és la web corporativa de FoodLogístic SA, una empresa fictícia dedica
 
 ## Demostració
 
-[🌐 URL de la web](https://[usuari].github.io/[nom-del-repositori])
+[🌐 URL de la web](https://github.com/samalluis/web-corporativa/blob/main/docs/index.html)
 
 ## Tecnologies Utilitzades
 
